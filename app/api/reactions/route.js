@@ -1,7 +1,19 @@
 import { getBrand, generateCouponCode } from '@/lib/brands';
+import { createReaction, getReactions, initializeDatabase } from '@/lib/db';
 
-// In-memory store for MVP (resets on server restart)
-const reactions = [];
+// Initialize database on first request
+let dbInitialized = false;
+
+async function ensureDatabase() {
+  if (!dbInitialized && process.env.POSTGRES_URL) {
+    try {
+      await initializeDatabase();
+      dbInitialized = true;
+    } catch (error) {
+      console.error('Failed to initialize database:', error);
+    }
+  }
+}
 
 export async function POST(request) {
   try {
@@ -25,28 +37,30 @@ export async function POST(request) {
 
     const couponCode = generateCouponCode(brandConfig.couponPrefix);
 
-    // Store reaction metadata (video is stored but truncated for memory in MVP)
-    const reaction = {
-      id: Date.now().toString(),
-      brand,
-      brandName: brandConfig.name,
-      timestamp,
-      couponCode,
-      videoSize: video ? video.length : 0,
-      createdAt: new Date().toISOString(),
-    };
+    // Try to store in database
+    if (process.env.POSTGRES_URL) {
+      await ensureDatabase();
+      const reaction = await createReaction({
+        brand,
+        brandName: brandConfig.name,
+        couponCode,
+        timestamp,
+        videoSize: video ? video.length : 0,
+      });
 
-    reactions.push(reaction);
-
-    // Keep only last 100 reactions in memory
-    if (reactions.length > 100) {
-      reactions.shift();
+      return Response.json({
+        success: true,
+        couponCode,
+        reactionId: reaction.id.toString(),
+      });
     }
 
+    // Fallback response when no database configured
     return Response.json({
       success: true,
       couponCode,
-      reactionId: reaction.id,
+      reactionId: Date.now().toString(),
+      note: 'Database not configured - reaction not persisted',
     });
   } catch (error) {
     console.error('Error processing reaction:', error);
@@ -58,16 +72,37 @@ export async function POST(request) {
 }
 
 export async function GET() {
-  return Response.json({
-    success: true,
-    reactions: reactions.map((r) => ({
-      id: r.id,
-      brand: r.brand,
-      brandName: r.brandName,
-      timestamp: r.timestamp,
-      couponCode: r.couponCode,
-      createdAt: r.createdAt,
-    })),
-    total: reactions.length,
-  });
+  try {
+    if (process.env.POSTGRES_URL) {
+      await ensureDatabase();
+      const reactions = await getReactions();
+
+      return Response.json({
+        success: true,
+        reactions: reactions.map((r) => ({
+          id: r.id.toString(),
+          brand: r.brand,
+          brandName: r.brand_name,
+          timestamp: r.timestamp,
+          couponCode: r.coupon_code,
+          createdAt: r.created_at,
+        })),
+        total: reactions.length,
+      });
+    }
+
+    // Fallback when no database configured
+    return Response.json({
+      success: true,
+      reactions: [],
+      total: 0,
+      note: 'Database not configured',
+    });
+  } catch (error) {
+    console.error('Error fetching reactions:', error);
+    return Response.json(
+      { success: false, error: 'Internal server error' },
+      { status: 500 }
+    );
+  }
 }
