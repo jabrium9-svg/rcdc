@@ -1,65 +1,218 @@
-import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.js file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <div className="min-h-screen bg-white">
+      {/* Header */}
+      <header className="border-b border-zinc-100">
+        <div className="mx-auto max-w-6xl px-6 py-4 flex items-center justify-between">
+          <div className="text-2xl font-bold text-zinc-900">RCDC</div>
+          <nav className="flex items-center gap-6">
+            <Link href="/dashboard" className="text-sm text-zinc-600 hover:text-zinc-900">
+              Dashboard
+            </Link>
+            <Link
+              href="#demo"
+              className="rounded-full bg-orange-500 px-4 py-2 text-sm font-medium text-white hover:bg-orange-600"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+              Request Demo
+            </Link>
+          </nav>
+        </div>
+      </header>
+
+      {/* Hero Section */}
+      <section className="mx-auto max-w-6xl px-6 py-24 text-center">
+        <h1 className="mx-auto max-w-4xl text-5xl font-bold tracking-tight text-zinc-900">
+          Turn Ghosted Customers Into{" "}
+          <span className="text-orange-500">Engaged Fans</span>
+        </h1>
+        <p className="mx-auto mt-6 max-w-2xl text-xl text-zinc-600">
+          RCDC helps businesses re-engage prospects who went silent by inviting them
+          to record reaction videos — then rewards them with exclusive offers.
+        </p>
+        <div className="mt-10 flex justify-center gap-4">
+          <Link
+            href="#demo"
+            className="rounded-full bg-orange-500 px-8 py-3 text-lg font-medium text-white hover:bg-orange-600"
+          >
+            Request a Demo
+          </Link>
+          <Link
+            href="/demo/sunset-motors"
+            className="rounded-full border border-zinc-300 px-8 py-3 text-lg font-medium text-zinc-700 hover:border-zinc-400"
+          >
+            Try Live Demo
+          </Link>
+        </div>
+      </section>
+
+      {/* How It Works */}
+      <section className="bg-zinc-50 py-24">
+        <div className="mx-auto max-w-6xl px-6">
+          <h2 className="text-center text-3xl font-bold text-zinc-900">How It Works</h2>
+          <p className="mx-auto mt-4 max-w-xl text-center text-zinc-600">
+            Three simple steps to transform silent prospects into engaged customers.
           </p>
+
+          <div className="mt-16 grid gap-8 md:grid-cols-3">
+            {/* Step 1 */}
+            <div className="rounded-xl bg-white p-8 shadow-sm">
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-orange-100 text-xl font-bold text-orange-600">
+                1
+              </div>
+              <h3 className="mt-6 text-xl font-semibold text-zinc-900">Watch</h3>
+              <p className="mt-2 text-zinc-600">
+                Customer receives a personalized link and watches your brand content —
+                a product video, special offer, or personal message.
+              </p>
+            </div>
+
+            {/* Step 2 */}
+            <div className="rounded-xl bg-white p-8 shadow-sm">
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-orange-100 text-xl font-bold text-orange-600">
+                2
+              </div>
+              <h3 className="mt-6 text-xl font-semibold text-zinc-900">React</h3>
+              <p className="mt-2 text-zinc-600">
+                They record a short video reaction sharing their thoughts. Authentic
+                engagement you can use for testimonials and insights.
+              </p>
+            </div>
+
+            {/* Step 3 */}
+            <div className="rounded-xl bg-white p-8 shadow-sm">
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-orange-100 text-xl font-bold text-orange-600">
+                3
+              </div>
+              <h3 className="mt-6 text-xl font-semibold text-zinc-900">Reward</h3>
+              <p className="mt-2 text-zinc-600">
+                Upon submission, they instantly receive an exclusive coupon code —
+                incentivizing the next step in their buying journey.
+              </p>
+            </div>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      {/* Value Props */}
+      <section className="py-24">
+        <div className="mx-auto max-w-6xl px-6">
+          <h2 className="text-center text-3xl font-bold text-zinc-900">
+            Why Businesses Choose RCDC
+          </h2>
+
+          <div className="mt-16 grid gap-12 md:grid-cols-2">
+            <div className="flex gap-4">
+              <div className="flex-shrink-0 text-3xl">📹</div>
+              <div>
+                <h3 className="text-lg font-semibold text-zinc-900">Authentic Video Testimonials</h3>
+                <p className="mt-2 text-zinc-600">
+                  Capture genuine customer reactions you can use in marketing — with their permission.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex gap-4">
+              <div className="flex-shrink-0 text-3xl">🎯</div>
+              <div>
+                <h3 className="text-lg font-semibold text-zinc-900">Re-engage Lost Prospects</h3>
+                <p className="mt-2 text-zinc-600">
+                  Bring back customers who went quiet with a novel, engaging experience.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex gap-4">
+              <div className="flex-shrink-0 text-3xl">💰</div>
+              <div>
+                <h3 className="text-lg font-semibold text-zinc-900">Incentivized Conversion</h3>
+                <p className="mt-2 text-zinc-600">
+                  Exclusive coupon rewards drive customers back to complete their purchase.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex gap-4">
+              <div className="flex-shrink-0 text-3xl">📊</div>
+              <div>
+                <h3 className="text-lg font-semibold text-zinc-900">Customer Insights</h3>
+                <p className="mt-2 text-zinc-600">
+                  Learn what customers really think through their unscripted video feedback.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
-      </main>
+      </section>
+
+      {/* Demo Brands */}
+      <section id="demo" className="bg-zinc-50 py-24">
+        <div className="mx-auto max-w-6xl px-6">
+          <h2 className="text-center text-3xl font-bold text-zinc-900">Try a Live Demo</h2>
+          <p className="mx-auto mt-4 max-w-xl text-center text-zinc-600">
+            Experience RCDC from the customer&apos;s perspective with one of our demo brands.
+          </p>
+
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            <Link
+              href="/demo/sunset-motors"
+              className="group rounded-xl bg-white p-6 shadow-sm transition hover:shadow-md"
+            >
+              <div className="h-32 rounded-lg bg-gradient-to-br from-orange-400 to-amber-500"></div>
+              <h3 className="mt-4 text-lg font-semibold text-zinc-900 group-hover:text-orange-600">
+                Sunset Motors
+              </h3>
+              <p className="mt-1 text-sm text-zinc-600">Car Dealership</p>
+            </Link>
+
+            <Link
+              href="/demo/paradise-jewelers"
+              className="group rounded-xl bg-white p-6 shadow-sm transition hover:shadow-md"
+            >
+              <div className="h-32 rounded-lg bg-gradient-to-br from-yellow-400 to-amber-600"></div>
+              <h3 className="mt-4 text-lg font-semibold text-zinc-900 group-hover:text-amber-600">
+                Paradise Jewelers
+              </h3>
+              <p className="mt-1 text-sm text-zinc-600">Jewelry Store</p>
+            </Link>
+
+            <Link
+              href="/demo/blue-horizon-boats"
+              className="group rounded-xl bg-white p-6 shadow-sm transition hover:shadow-md"
+            >
+              <div className="h-32 rounded-lg bg-gradient-to-br from-sky-400 to-blue-600"></div>
+              <h3 className="mt-4 text-lg font-semibold text-zinc-900 group-hover:text-blue-600">
+                Blue Horizon Boats
+              </h3>
+              <p className="mt-1 text-sm text-zinc-600">Boat Dealer</p>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-24">
+        <div className="mx-auto max-w-4xl px-6 text-center">
+          <h2 className="text-3xl font-bold text-zinc-900">Ready to Re-engage Your Customers?</h2>
+          <p className="mt-4 text-xl text-zinc-600">
+            Get started with RCDC and turn your silent prospects into engaged fans.
+          </p>
+          <Link
+            href="mailto:hello@rcdc.com"
+            className="mt-8 inline-block rounded-full bg-orange-500 px-8 py-3 text-lg font-medium text-white hover:bg-orange-600"
+          >
+            Contact Us
+          </Link>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="border-t border-zinc-100 py-8">
+        <div className="mx-auto max-w-6xl px-6 text-center text-sm text-zinc-500">
+          &copy; {new Date().getFullYear()} RCDC. Reaction-Driven Customer Engagement.
+        </div>
+      </footer>
     </div>
   );
 }

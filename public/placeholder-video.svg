@@ -1,0 +1,6 @@
+<svg width="1280" height="720" viewBox="0 0 1280 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1280" height="720" fill="#F4F4F5"/>
+  <rect x="540" y="260" width="200" height="200" rx="100" fill="#E4E4E7"/>
+  <path d="M665 360L615 330V390L665 360Z" fill="#A1A1AA"/>
+  <text x="640" y="520" text-anchor="middle" font-family="system-ui, sans-serif" font-size="24" fill="#71717A">Brand Video Content</text>
+</svg>
