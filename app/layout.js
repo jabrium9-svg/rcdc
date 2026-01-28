@@ -12,8 +12,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "RCDC - Reaction-Driven Customer Engagement",
-  description: "Turn ghosted customers into engaged fans with reaction videos that reward authentic engagement.",
+  title: "Reaction Coupons — Reconnect with Your Audience",
+  description:
+    "Reward your followers for engaging with your content. Reconnect through conversation, not algorithms.",
 };
 
 export default function RootLayout({ children }) {
