@@ -8,7 +8,7 @@ export default function Home() {
             Reaction<span className="text-coral">Coupons</span>
           </div>
           <a
-            href="https://app.jabrium.com"
+            href="https://app.jabrium.com?source=rcdc&company=reactioncoupons"
             className="rounded-full bg-coral px-5 py-2 text-sm font-medium text-white hover:bg-coral-dark transition-colors"
           >
             Get Started
@@ -31,7 +31,7 @@ export default function Home() {
         </p>
         <div className="mt-10">
           <a
-            href="https://app.jabrium.com"
+            href="https://app.jabrium.com?source=rcdc&company=reactioncoupons"
             className="inline-block rounded-full bg-coral px-8 py-4 text-lg font-semibold text-white hover:bg-coral-dark transition-colors shadow-lg shadow-coral/25"
           >
             Get Started &mdash; Download Jabrium
@@ -386,7 +386,7 @@ export default function Home() {
             setting up your first campaign.
           </p>
           <a
-            href="https://app.jabrium.com"
+            href="https://app.jabrium.com?source=rcdc&company=reactioncoupons"
             className="mt-8 inline-block rounded-full bg-coral px-8 py-4 text-lg font-semibold text-white hover:bg-coral-dark transition-colors shadow-lg shadow-coral/25"
           >
             Get Started
